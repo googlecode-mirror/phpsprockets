@@ -1,0 +1,17 @@
+Sprocket factories are great for producing code without writing the same thing over and over. A factory is a collection of static functions.
+
+==Create a form using Sprocket_Forms==
+
+{{{
+$my_form = Sprocket_Forms::Form( 'form_name' );
+}}}
+You should consult the factory documentation or code to see what arguments are needed.
+
+==Add some form elements==
+
+Sprocket_Forms has a whole bunch of functions to make common and not-so-common form elements. When we make an element, we just add it to the form we made:
+
+{{{
+$name_input = Sprocket_Forms( 'name' );
+$my_form->add( $name_input );
+}}}
