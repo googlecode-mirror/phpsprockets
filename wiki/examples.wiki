@@ -24,7 +24,6 @@ $anchor->href = $full_url;
 
 // add an image inside the anchor and then add attributes to it
 $link_image = $anchor->img();
-$link_image->border = 0;
 $link_image->src = $url;
 $link_image->height = $height;
 $link_image->width = $width;
