@@ -5,6 +5,8 @@ You can add text, html and Sprockets to a Sprocket. The Sprocket figures out wha
 For example, suppose you have made a table, a table row and a table data cell, like this:
 
 {{{
+require_once 'phpSprockets/Sprocket.php';
+
 $table = new Sprocket( 'table' );
 $table_row = $table->tr();
 $table_data = $table_row->td();
