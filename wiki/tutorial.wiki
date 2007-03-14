@@ -1,0 +1,41 @@
+==Introduction==
+
+Sprockets are a quick way to produce HTML, XHTML and XML in code without messing around with strings.
+
+==Include the phpSprocket class library==
+{{{
+<?php
+require_once 'phpSprockets/Sprocket.php';
+}}}
+
+Easy!
+
+==Create a Sprocket==
+
+Let's start with a div:
+
+{{{
+$my_first_sprocket = new Sprocket('div');
+}}}
+
+And let's *give it an attribute*, such as a CSS class:
+
+{{{
+$my_first_sprocket->class = 'some_css_class';
+}}}
+
+==Add some tags to the div==
+
+{{{
+$my_first_sprocket->h1( "Hello world" );
+$my_first_sprocket->p( "This is the beginning of something really cool!" );
+}}}
+
+We can add any tag we like, even ones that don't exist in HTML.
+
+Now let's output the HTML:
+
+{{{
+echo $my_first_sprocket->render();
+}}}
+
