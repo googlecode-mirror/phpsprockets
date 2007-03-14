@@ -14,6 +14,17 @@ Sprocket_Image::ImageLink( $href, $src, $width, $height, $alt_text )
 
 Which would return a Sprocket that would render an img tag nested within an anchor tag.
 
+==Why use factories?==
+
+===Enforce standards===
+Besides the obvious advantage of code reuse, factories can enforce standards. For example, an <img /> tag is not valid W3C HTML without an alt attribute. A factory can enforce validation compliance according to your project standards.
+
+===Code Segregation===
+Even if you are using an MVC structured framework, there is a persistent tendency for reusable code to be developed in the application domain. Factories make it easy to keep reusable code separate and portable.
+
+===Refactoring===
+Factories focus code generation in a single place, making refactoring for external standards easier.
+
 ==Available factories==
 
 The phpSprockets library currently contains the following factories:
