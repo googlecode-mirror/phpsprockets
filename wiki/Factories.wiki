@@ -18,6 +18,7 @@ Which would return a Sprocket that would render an img tag nested within an anch
 
 The phpSprockets library currently contains the following factories:
 
-  * *Sprocket_Forms*: HTML form and form element factory
+  * `Sprocket_Forms`: _HTML form and form element factory_
 
 Since the Sprockets code is simple and stable, most development of this library will be in the form of new factories. You are encouraged to submit factories to the library.
+
