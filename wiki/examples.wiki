@@ -1,0 +1,32 @@
+==Typical HTML generation by string concatenation==
+_from Mediawiki_
+
+{{{
+$anchoropen  = "<a href=\"{$full_url}\">";
+$anchorclose = "</a><br />";
+[...]
+$wgOut->addHTML( '<div class="fullImageLink" id="file">' . $anchoropen .
+	"<img border=\"0\" src=\"{$url}\" width=\"{$width}\" height=\"{$height}\" alt=\"" .
+	htmlspecialchars( $this->img->getTitle()->getPrefixedText() ).'" />' . $anchorclose . '</div>' );
+}}}
+
+==How to do the same thing with phpSprockets==
+
+{{{
+// create the root sprocket
+$output = new phpSprocket('div');
+$output->class = 'fullImageLink';
+$output->id = 'file';
+
+// add an anchor inside the root div
+$anchor = $output->a();
+$anchor->href = $full_url;
+
+// add an image inside the anchor and then add attributes to it
+$link_image = $anchor->img();
+$link_image->border = 0;
+$link_image->src = $url;
+$link_image->height = $height;
+$link_image->width = $width;
+$link_image->alt = htmlspecialchars( $this->img->getTitle()->getPrefixedText() );
+}}}
