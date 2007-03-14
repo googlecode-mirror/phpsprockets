@@ -3,6 +3,8 @@
 Let's start with a div:
 
 {{{
+require_once 'phpSprockets/Sprocket.php';
+
 $my_first_sprocket = new Sprocket('div');
 }}}
 
