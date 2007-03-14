@@ -14,7 +14,7 @@ $wgOut->addHTML( '<div class="fullImageLink" id="file">' . $anchoropen .
 
 {{{
 // create the root sprocket
-$output = new phpSprocket('div');
+$output = new Sprocket('div');
 $output->class = 'fullImageLink';
 $output->id = 'file';
 
@@ -28,4 +28,8 @@ $link_image->src = $url;
 $link_image->height = $height;
 $link_image->width = $width;
 $link_image->alt = htmlspecialchars( $this->img->getTitle()->getPrefixedText() );
+
+// output the HTML to the existing application infrastructure
+$wgOut->addHTML( $output->render() );
 }}}
+
