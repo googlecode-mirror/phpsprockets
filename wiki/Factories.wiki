@@ -1,0 +1,23 @@
+==What is a Sprocket factory?==
+
+A Sprocket factory is a class containing static functions that generate sprockets. For example, an image factory might have a function like this:
+
+{{{
+Sprocket_Image::Image( $image_src, $width, $height, $alt_text );
+}}}
+
+Which would return a single Sprocket that would render an <img /> tag. A more complex example might be a factory making image links:
+
+{{{
+Sprocket_Image::ImageLink( $href, $src, $width, $height, $alt_text )
+}}}
+
+Which would return a Sprocket that would render an img tag nested within an anchor tag.
+
+==Available factories==
+
+The phpSprockets library currently contains the following factories:
+
+  * *Sprocket_Forms*: HTML form and form element factory
+
+Since the Sprockets code is simple and stable, most development of this library will be in the form of new factories. You are encouraged to submit factories to the library.
