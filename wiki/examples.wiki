@@ -10,6 +10,8 @@ $wgOut->addHTML( '<div class="fullImageLink" id="file">' . $anchoropen .
 	htmlspecialchars( $this->img->getTitle()->getPrefixedText() ).'" />' . $anchorclose . '</div>' );
 }}}
 
+The code is part of a complex HTML generation process.
+
 ==How to do the same thing with phpSprockets==
 
 {{{
@@ -27,9 +29,10 @@ $link_image = $anchor->img();
 $link_image->src = $url;
 $link_image->height = $height;
 $link_image->width = $width;
-$link_image->alt = htmlspecialchars( $this->img->getTitle()->getPrefixedText() );
+$link_image->alt = $alt_text;
 
 // output the HTML to the existing application infrastructure
 $wgOut->addHTML( $output->render() );
 }}}
 
+Although the Sprockets code is longer, notice how there is no need for escaping quotes, curly braces or string concatenation. There are no closing quotes, and each attribute is expressly declared on its own line.
