@@ -8,7 +8,7 @@ For example, suppose you have made a table, a table row and a table data cell, l
 $table = new Sprocket( 'table' );
 $table_row = $table->tr();
 $table_data = $table_row->td();
-}})
+}}}
 
 And suppose that we want to insert an image and some text into $table_data. We can easily make the image part, like this:
 
