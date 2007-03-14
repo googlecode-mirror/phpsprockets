@@ -3,6 +3,8 @@ Sprocket factories are great for producing code without writing the same thing o
 ==Create a form using Sprocket_Forms==
 
 {{{
+require_once 'phpSprockets/Sprocket_Forms.php';
+
 $my_form = Sprocket_Forms::Form( 'form_name' );
 }}}
 You should consult the factory documentation or code to see what arguments are needed.
