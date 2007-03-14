@@ -5,9 +5,11 @@ _from Mediawiki_
 $anchoropen  = "<a href=\"{$full_url}\">";
 $anchorclose = "</a><br />";
 [...]
-$wgOut->addHTML( '<div class="fullImageLink" id="file">' . $anchoropen .
-	"<img border=\"0\" src=\"{$url}\" width=\"{$width}\" height=\"{$height}\" alt=\"" .
-	htmlspecialchars( $this->img->getTitle()->getPrefixedText() ).'" />' . $anchorclose . '</div>' );
+$wgOut->addHTML( '<div class="fullImageLink" 
+        id="file">' . $anchoropen . "<img border=\"0\" 
+        src=\"{$url}\" width=\"{$width}\" height=\"{$height}\"
+        alt=\"" . htmlspecialchars( $this->img->getTitle()->getPrefixedText() )
+        .'" />' . $anchorclose . '</div>' );
 }}}
 
 The code is part of a complex HTML generation process.
@@ -35,4 +37,4 @@ $link_image->alt = $alt_text;
 $wgOut->addHTML( $output->render() );
 }}}
 
-Although the Sprockets code is longer, notice how there is no need for escaping quotes, curly braces or string concatenation. There are no closing quotes, and each attribute is expressly declared on its own line.
+Although the Sprockets code is longer, it is more readable because there is no need for escaping quotes, curly braces or string concatenation. There are no closing quotes, and each attribute is expressly declared on its own line.
