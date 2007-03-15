@@ -8,6 +8,4 @@ Sprockets are fairly straightforward tools; the idiosyncracies they have are ref
 
   * You can make *'headless' Sprockets* by omitting the tagname when you create it. It will render any Sprockets or text it contains, but not any enclosing tag or attributes. This could be useful if you were rendering, say, an Atom feed in parts.
 
-  * Sprockets are great for *generating XML*. The only problem you'll find is the colons in XSL tags (we'll fix this when we need to generate XSL).
-
-
+  * Sprockets are great for *generating XML*. The only problem you'll find is the colons in XSL tags (XSL will require a new subclass of Sprockets capable of using namespaces).
