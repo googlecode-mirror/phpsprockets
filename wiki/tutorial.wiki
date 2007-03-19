@@ -1,5 +1,3 @@
-Sprockets are a quick way to produce HTML, XHTML and XML in code without messing around with strings. You can become a Sprockets expert in half an hour; by tomorrow you'll wonder how you did without them.
-
   * [Tutorial1 Hello World!]
   * [Tutorial2 Adding text and sprockets]
   * [Tutorial3 Using factories]
