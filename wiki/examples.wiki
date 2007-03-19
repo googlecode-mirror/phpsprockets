@@ -55,4 +55,10 @@ echo "</tr></table>";
 if( $use_form ) echo "</form>";
 }}}
 
+Sprockets equivalent:
+
+{{{
+// you don't need to close tags with Sprockets
+}}}
+
 Keeping track of closing tags can make code hard to read. Once you have (say) client-side validating form elements inside a table inside a form inside a tabbed interface, HTML decorated with PHP can easily become incomprehensible even to the person who wrote it.
