@@ -17,6 +17,9 @@ The code is part of a complex HTML generation process.
 ==How to do the same thing with phpSprockets==
 
 {{{
+// include the library
+require_once 'phpSprockets/Sprocket.php';
+
 // create the root sprocket
 $output = new Sprocket('div');
 $output->class = 'fullImageLink';
