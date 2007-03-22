@@ -37,7 +37,7 @@
 **------------------------------------------------------------------------------
 */
 	
-	/**
+/**
 	 * The base class every Sprocket inhereits from -- no tag, just text
 	 * 
 	 * @package phpSprockets
@@ -80,7 +80,7 @@
 		}
 		
 		/**
-		 * Renders this TextSprocket
+		 * Renders this TextSprocket into the output buffer
 		 * 
 		 * Note that this will just return the text representation of the 
 		 * TextSprocket, suitable for sending to browser.  It does not actually
@@ -92,23 +92,21 @@
 		 *
 		 * @param int The formatting depth to start at, defaults to 0 (no indent)
 		 * @param bool If true, do not indent
-		 * @return formatted TextSprocket ready for output
 		 */		
-		public function render( $depth = 0, $force_inline = false )
+		public function execRender( $depth = 0, $force_inline = false )
 		{
 			if( $this->force_inline )
 			{
 				$force_inline = true;
 			}
 			
-			if( $force_inline )
+			if( !$force_inline )
 			{
-				return $this->content;
+				echo $this->tabs( $depth );
+				
 			}
-			else
-			{
-				return $this->tabs( $depth ) . $this->content;
-			}
+			
+			echo $this->content;
 		}
 	
 		/**

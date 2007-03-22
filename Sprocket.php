@@ -38,7 +38,7 @@
 */
 	
 	require_once 'TextSprocket.php';
-
+	
 	/**
 	 * This is the main class you interact with while using phpSprockets.
 	 * 
@@ -58,7 +58,7 @@
 		 *
 		 * @var array
 		 */
-		protected $attributes;
+		public $attributes;
 		
 		/**
 		 * Constructor
@@ -72,12 +72,17 @@
 		 *
 		 * @param string $tag
 		 */
-		public function __construct( $tag = null )
+		public function __construct( $tag = null, $initial_content = false )
 		{
 			
 			if( $tag )
 			{
 				$this->tag = $tag;
+			}
+			
+			if( $initial_content )
+			{
+				$this->add( $initial_content );
 			}
 		}
 		
@@ -94,7 +99,7 @@
 		 * @param bool If true, prepend, if false, append
 		 * @return $this for fluid notation
 		 */
-		protected function execAdd( $item, $prepend = false )
+		protected function addItem( $item, $prepend = false )
 		{
 			// this function abstracted out to allow prepends
 			
@@ -141,7 +146,14 @@
 		 */
 		public function add( $item )
 		{
-			return $this->execAdd( $item );
+			if( is_array( $item ) )
+			{
+				return $this->addArray( $item );
+			}
+			else
+			{
+				return $this->addItem( $item );
+			}
 		}
 		
 		/**
@@ -165,7 +177,7 @@
 		{
 			foreach( $array as $item )
 			{
-				$this->add( $item );
+				$this->addItem( $item );
 			}
 			
 			return $this;
@@ -240,14 +252,13 @@
 		 * 
 		 * @param int The rendering depth to begin at, defaults to 0
 		 * @param bool Suppress formatting tabs inside the tag? defaults to false
-		 * @return string Rendered output of the Sprocket and all children.
 		 */
-		public function render( $depth = 0, $force_inline = false )
+		public function execRender( $depth = 0, $force_inline = false )
 		{
 			
 			if( $force_inline )
 			{
-				$tabs = '';
+				$tabs = false;
 			}
 			else
 			{
@@ -257,72 +268,74 @@
 				{
 					$force_inline = true;
 				}
+				
+				echo $tabs;
 			}
-			
-			// assemble the output non-inline:
-			$html = $tabs;
 			
 			// short tags are tags that have no children:
 			if( $this->content )
 			{
 				// full tag
-				$html .= $this->renderOpeningTag();
-				$html .= $this->renderContent( $depth, $force_inline );
+				$this->renderOpeningTag();
+				$this->renderContent( $depth, $force_inline );
 				
 				if( !$force_inline )
 				{
-					$html .= $tabs;
+					echo $tabs;
 				}
 				
-				$html .= $this->renderClosingTag();
+				$this->renderClosingTag();
 			}
 			else
 			{
 				// short tag
-				$html .= $this->renderOpeningTag();
+				$this->renderOpeningTag();
 			}
-			return $html;
 		}
 		
+		public function render()
+		{
+			// start output buffer
+			ob_start();
+			
+			// render the root Sprocket
+			$this->execRender( 0, false);
+			
+			// return the generated *ML
+			return ob_get_clean();
+		}
 		
 		/**
-		 * Renders the opening tag of the Sprocket, along with all attributes.
-		 *
-		 * @return string The rendered opening tag
+		 * Renders the opening tag of the Sprocket, along with all attributes into the output buffer
 		 */
 		private function renderOpeningTag()
 		{
 			if( $this->tag )
 			{
-				$html = sprintf( "<%s", $this->tag );
+				echo sprintf( "<%s", $this->tag );
 			
 				if( $this->attributes )
 				{
 					// if we're adding attributes, add them
-					$html .= ' ' . $this->renderAttributes(); 
+					echo ' ';
+					echo $this->renderAttributes(); 
 				}
 				
 				if( $this->content )
 				{
 					// long tag
-					$html .= ">";
+					echo ">";
 				}
 				else
 				{
 					// short tag
-					$html .= " />";
+					echo " />";
 				}
 			}
-			else
-			{
-				$html = null;
-			}
-			
-			return $html;
 		}
 		
 		/**
-		 * Renders the attributes for the opening tag.
+		 * Renders the attributes for the opening tag into the output buffer
 		 *
 		 * Use double quotes for the attributes so that
 		 * javascript functions can use single quotes
@@ -331,7 +344,6 @@
 		 * so we have a way to make oddly formed attributes
 		 * such as 'selected' or 'checked' (HTML-style)
 		 * 
-		 * @return rendered string of attributes
 		 */
 		private function renderAttributes()
 		{
@@ -352,48 +364,35 @@
 			}
 			
 			// join the array with spaces
-			return implode( ' ', $html_array );
+			echo implode( ' ', $html_array );
 		}
 		
 		/**
-		 * Render the content of the Sprocket
-		 * 
+		 * Render the content of the Sprocket into the output buffer
 		 *
 		 * @param int Current tab depth, defaults to 0
 		 * @param bool Suppress indentation tabs in output?  Defaults to false.
-		 * @return string Rendered content of this Sprocket.
 		 */
 		public function renderContent( $depth = 0, $force_inline = false )
 		{
-			// now add the content
-			$html = '';
-			
 			if( $this->content )
 			{
 				foreach( $this->content as $item )
 				{
-					$html .= $item->render( $depth + 1, $force_inline );
+					$item->execRender( $depth + 1, $force_inline );
 				}
 			}
-			
-			return $html;
 		}
 		
 		/**
-		 * Renders the closing tag on this Sprocket.
-		 *
-		 * @return string the formatted closing tag.
+		 * Renders the closing tag into the output buffer.
 		 */
 		private function renderClosingTag()
 		{	
 			// now close the tag
 			if( $this->tag )
 			{
-				return sprintf( "</%s>", $this->tag );
-			}
-			else
-			{
-				return null;
+				echo sprintf( "</%s>", $this->tag );
 			}
 		}
 	}
