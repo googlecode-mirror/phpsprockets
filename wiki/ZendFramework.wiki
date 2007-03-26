@@ -1,7 +1,7 @@
-This article discusses integrating phpSprockets with the [http://framework.zend.com Zend Framework], a popular high-quality open source MVC framework for PHP. 
+This article discusses integrating [http://code.google.com/p/phpsprockets/ phpSprockets] with the [http://framework.zend.com Zend Framework], a popular high-quality open source MVC framework for PHP. 
 
 ==Sprockets==
-One of the nice things about phpSprockets is that it is a non-dogmatic library. Not only can you blend Sprockets with templating systems such as Smarty on the output side, you can also integrate with existing code on the HTML generation side by inserting HTML directly into Sprockets.
+One of the nice things about phpSprockets is that it is a non-dogmatic library. Not only can you blend Sprockets with templating systems such as [http://smarty.php.net/ Smarty] on the output side, you can also integrate with existing code on the HTML generation side by inserting HTML directly into Sprockets.
 
 This article is about one way that Sprockets can integrate with existing infrastructure; in this case, the impressive Zend Framework.
 
@@ -32,7 +32,7 @@ The approach we take here is to add to the view subclass a 'headless' Sprocket w
 	}
 }}}
 
-This means that any function calls that are otherwise undefined will be redirected to the Sprocket, where they will be interpreted as requests for new child Sprockets.
+This means that any function calls that are otherwise undefined will be redirected to the Sprocket, where they will be interpreted as requests for new child Sprockets. This replaces the existing 'helper' method calls in the framework, which is not too dramatic as Sprockets have far more functionality than the helper classes.
 
 We might also want to add already existing Sprockets, such as those created in a factory, or to add untagged text:
 
@@ -135,7 +135,6 @@ Incidentally, !TableView.php would render this HTML:
 
 ==Conclusion==
 phpSprockets adds to MVC architectures such as Zend Framework a lucid way of generating HTML. The points of integration are minimal and the integration is at will.
-
 
 
 
