@@ -72,7 +72,7 @@ $this->add( $button );
 }}}
 
 ==Output==
-To output the view contents, we override Zend_View's _run() method:
+To output the view contents, we override !Zend_View's _run() method:
 
 {{{
 	protected function _run()
@@ -96,7 +96,7 @@ Rendering a view returns an HTML string just as before; our controller is going 
 
 (OK, this is example code; a more refined controller action will be just a matter of sandwiching the view's output between a header and footer, either as rendered HTML, or as a Sprocket if your page output routines use Sprockets, or with a template system such as Smarty).
 
-The SprocketView class can be rendered successively, like this:
+The !SprocketView class can be rendered successively, like this:
 {{{
 		$view->render( 'HeaderView.php' );
 		$view->render( 'MenuView.php' );
@@ -104,7 +104,7 @@ The SprocketView class can be rendered successively, like this:
 		$html = $view->render( 'FooterView.php' );
 }}}
 
-Incidentally, TableView.php would render this HTML:
+Incidentally, !TableView.php would render this HTML:
 {{{
 <table class="my_css_class">
 	<tr>
