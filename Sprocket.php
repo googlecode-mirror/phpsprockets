@@ -2,7 +2,7 @@
 /*------------------------------------------------------------------------------
 **       ____________
 **      /\  ________ \           phpSprockets
-**     /  \ \______/\ \          Sprocket.php v0.9
+**     /  \ \______/\ \          Sprocket.php v0.9.2
 **    / /\ \ \  / /\ \ \       
 **   / / /\ \ \/ / /\ \ \        The neat way to generate HTML and XML
 **  / / /__\_\/ / /__\_\ \     
@@ -164,7 +164,7 @@
 		 */
 		public function prepend( $item )
 		{
-			return $this->execAdd( $item, true );
+			return $this->addItem( $item, true );
 		}
 		
 		/**
